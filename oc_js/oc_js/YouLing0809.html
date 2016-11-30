@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>幽灵OC和js的交互</title>
+	</head>
+	<body>
+		<center>
+			<span>js部分</span>
+		</center>
+		<center>
+			<span>用户名：</span>
+			<input type="text" id="userName" name="userName" width="150px"/>
+		</center>
+		<center>
+			<span>密&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
+			<input type="text" id="passWord" name="passWord" width="150px" />
+		</center>
+		<center>
+			<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+			<input type="button" id="synchronization_to_oc" value="js数据同步到OC" width="60px" height="24px" onclick="js_synchronization_to_oc()"/>
+		</center>
+			<center>
+			<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+			<input type="button" name="clearOC" id="clearOC" value="清空OC数据" width="60px" height="24px" onclick="js_clear_oc()"/>
+		</center>
+		<script type="text/javascript">
+		/*
+		 * 清空oc数据
+		 */
+		function js_clear_oc(){
+			//alert(1234);
+			var iFrame;
+			iFrame = document.createElement("iframe");
+            iFrame.setAttribute("src", "youling0809://clearOC");
+            iFrame.setAttribute("style", "display:none;");
+            iFrame.setAttribute("height", "0px");
+            iFrame.setAttribute("width", "0px");
+            iFrame.setAttribute("frameborder", "0");
+            document.body.appendChild(iFrame);
+             // 发起请求后这个iFrame就没用了，所以把它从dom上移除掉
+             iFrame.parentNode.removeChild(iFrame);
+             iFrame = null;
+		}
+		/*
+		 * 清空JS数据
+		 */
+		function clear_js(){
+			document.getElementById('userName').value = "";
+			document.getElementById('passWord').value = "";
+		}
+		/*
+		 * 同步js到OC
+		 */
+		function js_synchronization_to_oc(){
+			//alert(1234);
+			var iFrame;
+			iFrame = document.createElement("iframe");
+            iFrame.setAttribute("src", "youling0809://js_synchronization_to_oc"+document.getElementById('userName').value+"__________"+document.getElementById('passWord').value);
+            iFrame.setAttribute("style", "display:none;");
+            iFrame.setAttribute("height", "0px");
+            iFrame.setAttribute("width", "0px");
+            iFrame.setAttribute("frameborder", "0");
+            document.body.appendChild(iFrame);
+             // 发起请求后这个iFrame就没用了，所以把它从dom上移除掉
+             iFrame.parentNode.removeChild(iFrame);
+             iFrame = null;
+		}
+		/*
+		 * 同步OC到JS
+		 */
+		function oc_synchronization_to_js(name,password01){
+			document.getElementById('userName').value = name;
+			document.getElementById('passWord').value = password01;
+			//alert(123);
+			}
+
+
+
+		</script>
+	</body>
+</html>
